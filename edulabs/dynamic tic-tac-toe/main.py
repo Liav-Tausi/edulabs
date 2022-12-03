@@ -29,6 +29,7 @@ if __name__ == "__main__":
             display(int(final_grid[0]), board)
             update_win(win_board=win_grid, player=player, grid_size=int(final_grid[0]))
             win = check_win(win_board=win_grid, grid_size=int(final_grid[0]),turn=turn[0], player=player_num(player))
+            print(win_grid)
             if win is True:
                 print(f"{names[turn[0] % 1].upper()} is the winner!")
                 end_time = datetime.now()
@@ -37,7 +38,7 @@ if __name__ == "__main__":
             else:
                 if win == "Draw!":
                     end_time = datetime.now()
-                    print("game time:", (end_time- start_time))
+                    print("game time:", (end_time - start_time))
                     break
                 else:
                     pass
@@ -47,10 +48,5 @@ if __name__ == "__main__":
                 start_again = input("\033[0;31;1mTry Again!\033 yes/no :").lower()
             continue
         break
-
-
-
-
-
 
 
