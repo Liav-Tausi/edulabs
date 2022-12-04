@@ -1,0 +1,44 @@
+{
+    "accounts": [
+        {
+            "liavt242@gmail.com": {
+                "email": "liavt242@gmail.com",
+                "first_name": "liav",
+                "last_name": "tausi",
+                "password": "36363636"
+            }
+        },
+        {
+            "asda@dsd.com": {
+                "email": "asda@dsd.com",
+                "first_name": "dede",
+                "last_name": "efefef",
+                "password": "342341341"
+            }
+        },
+        {
+            "ilan@gmail.con": {
+                "email": "ilan@gmail.con",
+                "first_name": "ilan",
+                "last_name": "sdas",
+                "password": "34134354"
+            }
+        },
+        {
+            "liavt@gmail.com": {
+                "email": "liavt@gmail.com",
+                "first_name": "liav",
+                "last_name": "sdasd",
+                "password": "3423424"
+            }
+        },
+        {
+            "liavt@gmail.com": {
+                "email": "liavt@gmail.com",
+                "first_name": "liav",
+                "last_name": "tausi",
+                "password": "432423423"
+            }
+        }
+    ]
+}

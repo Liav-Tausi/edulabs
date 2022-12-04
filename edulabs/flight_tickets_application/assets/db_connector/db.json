@@ -1,0 +1,18 @@
+{
+    "accounts": [
+        {
+            "boi@yooho.org": {
+                "f_name": "Bob",
+                "l_name": "Sral",
+                "password": "1234!@#"
+            }
+        },
+      {
+            "test@yooho.org": {
+                "f_name": "Test",
+                "l_name": "Sral",
+                "password": "1234!@#"
+            }
+        }
+    ]
+}

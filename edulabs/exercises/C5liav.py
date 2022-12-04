@@ -7,14 +7,17 @@ class Table:
 
     def __init__(self, table_id: int, seats: int, table_location: str):
 
-        self.table_location: str = table_location
-        self.table_id: int = table_id
-        self.seats: int = seats
-        self.occupied_seats: int = 0
-        self.available: bool = True
-        self.reservation_time = datetime.now()
-        self.reservation_limit = self.reservation_time + self.TIME_LIMIT
+        self.__table_location: str = table_location
+        self.__table_id: int = table_id
+        self.__seats: int = seats
+        self.__occupied_seats: int = 0
+        self.__available: bool = True
+        self.__reservation_time = datetime.now()
+        self.__reservation_limit = self.__reservation_time + self.TIME_LIMIT
 
+
+    def __repr__(self):
+        return f"{self.__occupied_seats}, {self.__seats}, {self.__table_location}"
 
 
     def is_available(self):
@@ -25,39 +28,50 @@ class Table:
 
 
     def reserve_table(self, guests: int):
-        if self.seats >= guests and self.available is True:
-            self.occupied_seats += guests
+        if self.__seats >= guests and self.__available is True:
+            self.__occupied_seats += guests
             self.available = False
             return True
         else:
             return False
 
 
+    def get_table_id(self):
+        return self.__table_id
+
+
+    def get_reservation_time(self):
+        return self.__reservation_time
+
+
+    def get_reservation_limit(self):
+        return self.__reservation_limit
+
 
 class TableReservationSystem:
 
     def __init__(self):
-        self.seats_dict: dict[int: Table] = dict()
-        self.reserved_tables: dict[int: Table] = dict()
+        self.__seats_dict: dict[int: Table] = dict()
+        self.__reserved_tables: dict[int: Table] = dict()
 
 
     def add_table(self, table: Table) -> dict:
-        if table.table_id not in self.seats_dict.keys():
-            self.seats_dict[table.table_id] = table
-        return self.seats_dict
+        if table.get_table_id() not in self.__seats_dict.keys():
+            self.__seats_dict[table.get_table_id()] = table
+        return self.__seats_dict
 
 
     def reserve_table(self,table: Table, guests: int) -> bool:
         if table.reserve_table(guests) is True:
-            self.reserved_tables[table.reservation_time] = {table.table_id: table}
-            print(f"table reserved at {table.reservation_time} to {table.reservation_time + table.TIME_LIMIT}")
+            self.__reserved_tables[table.get_table_id()] = {table.get_reservation_time(): table}
+            print(f"table reserved at {table.get_reservation_time()} to {table.get_reservation_time() + table.TIME_LIMIT}")
             return True
         else:
             return False
 
 
     def is_available_system(self,table: Table) -> None:
-        if table.table_id in self.seats_dict and table.is_available() is True:
+        if table.get_table_id() in self.__seats_dict and table.is_available() is True:
             print("table is available")
         else:
             print("table is unavailable")
@@ -65,10 +79,10 @@ class TableReservationSystem:
 
 
     def time_left(self, table: Table) -> timedelta | bool:
-        if table.table_id in self.reserved_tables or table.is_available() is True:
+        if table.get_table_id() in self.__reserved_tables or table.is_available() is True:
             return False
         else:
-            time_left_for_table = table.reservation_limit - table.reservation_time
+            time_left_for_table = table.get_reservation_limit() - table.get_reservation_time()
             return time_left_for_table
 
 
@@ -90,7 +104,6 @@ if __name__ == "__main__":
     table_system.is_available_system(table4)
     table_system.reserve_table(table4, 7)
     table_system.reserve_table(table1, 3)
-    print(table_system.reserved_tables)
     table_system.is_available_system(table4)
 
 
