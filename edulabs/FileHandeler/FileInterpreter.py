@@ -111,20 +111,24 @@ class BaseFile(ABC):
             return self.file_size()
 
     def _get_content(self) -> list:
-        with open(self._path, "r") as fh:
-            content = self._specific_content(fh)
+        try:
+            with open(self._path, "r") as fh:
+                content = self._specific_content(fh)
+        except FileExistsError():
+            pass
         return content
+
 
     @abstractmethod
     def _specific_content(self, fh):
         pass
 
     @abstractmethod
-    def content(self):
+    def _extension(self):
         pass
 
     @abstractmethod
-    def _extension(self):
+    def content(self):
         pass
 
 
@@ -270,7 +274,7 @@ class TxtFile(BaseFile):
     def avg_word_len(self) -> float:
         total_length = 0
         if self.content() == 0:
-            raise Exception("empty file")
+            raise Exception("Empty File")
         for word in str(self.content()).split():
             total_length += len(word)
         avg_word_len = total_length / len(str(self.content()).split())
