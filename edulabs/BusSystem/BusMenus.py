@@ -303,10 +303,10 @@ class Manager(MainMenu):
                         line_number) not in self.bus_company._get_bus_rotes().keys() or len(line_number) == 0:
                     line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ").strip()
 
-                insurence_check = input("Are you sure? (Yes/No): ")
-                while insurence_check not in ["yes", "no"]:
-                    insurence_check = input("\033[0;31;1mTry Again!\033[0;30;0m A (Yes/No): ")
-                if insurence_check == 'no':
+                interface_check = input("Are you sure? (Yes/No): ")
+                while interface_check not in ["yes", "no"]:
+                    interface_check = input("\033[0;31;1mTry Again!\033[0;30;0m A (Yes/No): ")
+                if interface_check == 'no':
                     Passenger(self.bus_company).run()
                 else:
                     route = self.bus_company.delete_route(line_number=int(line_number))
