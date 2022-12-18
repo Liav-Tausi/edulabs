@@ -76,5 +76,3 @@ class CreateAccount:
                 # end of program
                 start = False
                 return self.__accounts_info_dict
-
-
