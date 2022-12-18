@@ -1,5 +1,5 @@
 from BusValidations import *
-from BusClasses import BestBusCompany, BusRoute, ScheduledRide
+from BusClassesBack import BestBusCompany, BusRoute, ScheduledRide
 
 
 class MainMenu:
