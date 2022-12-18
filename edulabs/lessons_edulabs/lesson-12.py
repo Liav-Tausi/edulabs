@@ -160,61 +160,6 @@
 #       datetime.datetime(year=1900, month=1, day=1)
 # print(tr1.total_seconds() // 60)
 
-
-Skip
-to
-content
-Search or jump
-to…
-Pull
-requests
-Issues
-Codespaces
-Marketplace
-Explore
-
-
-@Liav - Tausi
-
-
-valeria - a
-/
-morning - ninjas
-Private
-Code
-Issues
-Pull
-requests
-Actions
-Projects
-Security
-Insights
-morning - ninjas / lesson12 / func_map.py /
-
-
-@valeria - a
-
-
-valeria - a
-lesson
-2
-eve
-Latest
-commit
-43
-c869c
-11
-hours
-ago
-History
-1
-contributor
-87
-lines(65
-sloc)  2
-KB
-
-
 # map(func, *iterables) --> map object
 def foo_squared(num):
     return num ** 2
