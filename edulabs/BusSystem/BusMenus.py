@@ -82,7 +82,7 @@ class Passenger(MainMenu):
 
                 elif search_method == "origin":
                     origin = input("Enter the origin: ").lower().strip()
-                    while is_num(origin) is False:
+                    while is_num(origin) is True:
                         origin = input("Enter the origin: ").lower().strip()
                     routes = self.bus_company._get_route_info(origin=origin)
                     if routes:
@@ -92,7 +92,7 @@ class Passenger(MainMenu):
 
                 elif search_method == "destination":
                     destination = input("Enter the destination: ").lower().strip()
-                    while is_num(destination) is False:
+                    while is_num(destination) is True:
                         destination = input("Enter the destination: ").lower().strip()
                     routes = self.bus_company._get_route_info(destination=destination)
                     if routes:
@@ -102,7 +102,7 @@ class Passenger(MainMenu):
 
                 elif search_method == "bus stop":
                     bus_stop = input("Enter bus stop: ").lower().strip()
-                    while is_num(bus_stop) is False:
+                    while is_num(bus_stop) is True:
                         bus_stop = input("Enter the bus stop: ").lower().strip()
                     # while bus_stop
                     routes = self.bus_company._get_route_info(bus_stop=bus_stop)

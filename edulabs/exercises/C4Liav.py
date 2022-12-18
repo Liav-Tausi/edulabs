@@ -64,7 +64,7 @@ class EBook:
 
 
 if __name__ == "__main__":
-    e_book: EBook = EBook("alice_in_wonderland.txt", 1000)
+    e_book: EBook = EBook("../FileHandeler/FHfiles/alice_in_wonderland.txt", 1000)
     e_book.get_total_pages()
 
     # pprint.pprint(e_book.display_content_for_page(27))

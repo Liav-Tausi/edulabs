@@ -51,7 +51,7 @@ class FilesChecker:
                                          })
 
                     date_year = dates.year
-        with open(f"{self.__main_directory}/{'new_apple_stock.csv'}", mode="a") as fh:
+        with open(f"{self.__main_directory}/{'new_apple_stock.csv'}", mode="a", newline="") as fh:
             filed_names = ["Year", "Avg Price", "Min Price", "Max Price", "Avg Volume", "Min Volume", "Min Volume", "Max Volume"]
             writer = csv.DictWriter(f=fh, fieldnames=filed_names)
             writer.writeheader()

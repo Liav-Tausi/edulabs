@@ -104,7 +104,7 @@ def account_login(start: bool):
         break
 
 
-def user_picks(num: str) -> bool:
+def user_picks(num: str) -> None:
     if num == '1':
         account_info(True)
 

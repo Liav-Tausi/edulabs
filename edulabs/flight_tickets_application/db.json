@@ -39,6 +39,14 @@
                 "last_name": "tausi",
                 "password": "432423423"
             }
+        },
+        {
+            "liavt242@gmail.com": {
+                "email": "liavt242@gmail.com",
+                "first_name": "liav",
+                "last_name": "tausi",
+                "password": "1234567"
+            }
         }
     ]
 }

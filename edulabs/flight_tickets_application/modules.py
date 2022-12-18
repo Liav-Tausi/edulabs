@@ -7,10 +7,12 @@ def file_open(file_path):
         print("NO FILE FOUND, CHECK PATH")
 
 def print_seats_map(value: int):
-    ''''DESC: FUNCTION PRINTING SEATS LAYOUT ON CMD
+    """
+    DESC: FUNCTION PRINTING SEATS LAYOUT ON CMD
     1 for first class
     2 for biz class
-    3 for eco class                            '''''
+    3 for eco class
+     """
     try:
         match value:
             case 1:
