@@ -83,7 +83,7 @@ class Passenger(MainMenu):
                 elif search_method == "origin":
                     origin = input("Enter the origin: ").lower().strip()
                     while is_num(origin) is True:
-                        origin = input("Enter the origin: ").lower().strip()
+                        origin = input("\033[0;31;1mTry Again!\033[0;30;0m Enter the origin: ").lower().strip()
                     routes = self.bus_company._get_route_info(origin=origin)
                     if routes:
                         print(f"Route information : {routes}")
@@ -93,7 +93,7 @@ class Passenger(MainMenu):
                 elif search_method == "destination":
                     destination = input("Enter the destination: ").lower().strip()
                     while is_num(destination) is True:
-                        destination = input("Enter the destination: ").lower().strip()
+                        destination = input("\033[0;31;1mTry Again!\033[0;30;0m Enter the destination: ").lower().strip()
                     routes = self.bus_company._get_route_info(destination=destination)
                     if routes:
                         print(f"Route information : {routes}")
@@ -103,7 +103,7 @@ class Passenger(MainMenu):
                 elif search_method == "bus stop":
                     bus_stop = input("Enter bus stop: ").lower().strip()
                     while is_num(bus_stop) is True:
-                        bus_stop = input("Enter the bus stop: ").lower().strip()
+                        bus_stop = input("\033[0;31;1mTry Again!\033[0;30;0m Enter the bus stop: ").lower().strip()
                     # while bus_stop
                     routes = self.bus_company._get_route_info(bus_stop=bus_stop)
                     if routes:
