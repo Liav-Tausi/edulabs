@@ -21,7 +21,7 @@ class MainMenu:
                         
                        Are you a manager or a passenger?
                                   
-                 [1]-> Manager |  [2]-> Passenger  | [3]-> Exit
+             [1]-> Manager   |   [2]-> Passenger   |   [3]-> Exit
             """)
             # get the user's choice
             choice = input("Enter your choice: ")
@@ -50,9 +50,9 @@ class Passenger(MainMenu):
     def run(self):
         while True:
             print("""
-                          Welcome passenger!
+                            Welcome passenger!
                             
-         Which of the following actions would you'd like to perform?
+          Which of the following actions would you'd like to perform?
                             
          [1]-> Search route
                             [2]-> Report delay
@@ -142,16 +142,16 @@ class Manager(MainMenu):
         while True:
             print("""
                                               
-                                   Welcome manager!
+                                     Welcome manager!
                                 
-               Which of the following actions would you'd like to perform?
+                 Which of the following actions would you'd like to perform?
                            
-          Add Route   |   Update Route   |   Add Scheduled route   |   Delete Route 
-              ↓       |         ↓        |            ↓            |         ↓
-             [1]      |        [2]       |           [3]           |        [4]
+          Add Route    |   Update Route   |   Add Scheduled route   |   Delete Route 
+              ↓        |         ↓        |            ↓            |         ↓
+             [1]       |        [2]       |           [3]           |        [4]
                       
                       
-                                 ← Main Menu [0]        
+                                      ← Main Menu [0]        
             """)
             action = input("Enter your choice: ")
             while action not in ["0", "1", "2", "3", "4"]:
