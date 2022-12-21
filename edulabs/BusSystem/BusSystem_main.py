@@ -10,11 +10,16 @@ if __name__ == "__main__":
     else:
         with open('bus_company.pickle', 'rb') as fh:
             bus_company = pickle.load(fh)
+    try:
+        MainMenu(bus_company).run()
 
-    MainMenu(bus_company).run()
+    except Exception():
+        print("Error restart program.")
 
-    with open('bus_company.pickle', 'wb') as fh:
-        pickle.dump(bus_company, fh)
+    finally:
+        with open('bus_company.pickle', 'wb') as fh:
+            pickle.dump(bus_company, fh)
+
 
 
 
