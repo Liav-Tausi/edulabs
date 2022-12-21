@@ -25,6 +25,7 @@ class BusRoute:
         return f"route number: {self.__route_number} | from: {self.__origin} | to: {self.__destination} | stops: {self.__stops}"
 
         # getters
+
     def _get_route_number(self) -> int:
         return self.__route_number
 
@@ -88,6 +89,7 @@ class ScheduledRide:
         else:
             raise Exception("negative delay not allowed.")
 
+
 class BestBusCompany:
 
     def __init__(self, name: str):
@@ -128,7 +130,8 @@ class BestBusCompany:
         else:
             raise Exception("Route not in system.")
 
-    def _get_route_info(self, line_number: int = None , origin: str = None, destination: str = None, bus_stop: str = None):
+    def _get_route_info(self, line_number: int = None, origin: str = None, destination: str = None,
+                        bus_stop: str = None):
         if line_number:
             # Search by line number
             if int(line_number) not in self.__bus_routes.keys():
@@ -159,5 +162,3 @@ class BestBusCompany:
             return matching_routes
         else:
             raise Exception("No search criteria provided")
-
-
