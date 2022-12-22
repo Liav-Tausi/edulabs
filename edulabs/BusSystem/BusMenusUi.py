@@ -72,9 +72,9 @@ class Passenger(MainMenu):
                 if search_method == "line number":
                     line_number = input("Enter the line number: ")
                     while is_num(line_number) is False or int(
-                            line_number) not in self.bus_company._get_bus_rotes().keys() or len(line_number) == 0:
+                            line_number) not in self.bus_company.get_bus_rotes().keys() or len(line_number) == 0:
                         line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ").strip()
-                    routes = self.bus_company._get_route_info(int(line_number))
+                    routes = self.bus_company.get_route_info(int(line_number))
                     if routes:
                         print(f"Route information : {routes}")
                     else:
@@ -84,7 +84,7 @@ class Passenger(MainMenu):
                     origin = input("Enter the origin: ").lower().strip()
                     while is_num(origin) is True:
                         origin = input("Enter the origin: ").lower().strip()
-                    routes = self.bus_company._get_route_info(origin=origin)
+                    routes = self.bus_company.get_route_info(origin=origin)
                     if routes:
                         print(f"Route information : {routes}")
                     else:
@@ -94,7 +94,7 @@ class Passenger(MainMenu):
                     destination = input("Enter the destination: ").lower().strip()
                     while is_num(destination) is True:
                         destination = input("Enter the destination: ").lower().strip()
-                    routes = self.bus_company._get_route_info(destination=destination)
+                    routes = self.bus_company.get_route_info(destination=destination)
                     if routes:
                         print(f"Route information : {routes}")
                     else:
@@ -105,7 +105,7 @@ class Passenger(MainMenu):
                     while is_num(bus_stop) is True:
                         bus_stop = input("Enter the bus stop: ").lower().strip()
                     # while bus_stop
-                    routes = self.bus_company._get_route_info(bus_stop=bus_stop)
+                    routes = self.bus_company.get_route_info(bus_stop=bus_stop)
                     if routes:
                         print(f"Route information : {routes}")
                     else:
@@ -114,7 +114,7 @@ class Passenger(MainMenu):
             elif choice == "2":
                 line_number = input("Insert the line's number: ").strip()
                 while is_num(line_number) is False or int(
-                        line_number) not in self.bus_company._get_bus_rotes().keys() or len(line_number) == 0:
+                        line_number) not in self.bus_company.get_bus_rotes().keys() or len(line_number) == 0:
                     line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ").strip()
 
                 o_time = input("Insert the departure time (in H:M format): ")
@@ -122,8 +122,8 @@ class Passenger(MainMenu):
                         o_time.split(':')[1]) is False:
                     o_time = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the departure time (in H:M format): ")
 
-                delay_func = self.bus_company._get_route_info(line_number=int(line_number))
-                if o_time not in delay_func._get_scheduled_rides():
+                delay_func = self.bus_company.get_route_info(line_number=int(line_number))
+                if o_time not in delay_func.get_scheduled_rides():
                     print(f"\033[0;31;1m No scheduled ride for\033[0;30;0m {o_time}")
                 else:
                     delay = input("Insert delay in minutes: ")
@@ -162,7 +162,7 @@ class Manager(MainMenu):
 
             if action == "1":
                 line_number = input("Insert the line's number: ")
-                while is_num(line_number) is False or line_number in self.bus_company._get_bus_rotes() or len(
+                while is_num(line_number) is False or line_number in self.bus_company.get_bus_rotes() or len(
                         line_number) == 0 or len(line_number) < 0:
                     line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ")
 
@@ -195,10 +195,10 @@ class Manager(MainMenu):
             elif action == "2":
                 line_number = input("Insert the line's number: ").strip()
                 while is_num(line_number) is False or int(
-                        line_number) not in self.bus_company._get_bus_rotes().keys() or len(line_number) == 0:
+                        line_number) not in self.bus_company.get_bus_rotes().keys() or len(line_number) == 0:
                     line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ").strip()
 
-                route = self.bus_company._get_route_info(int(line_number))
+                route = self.bus_company.get_route_info(int(line_number))
                 print(f"current bus route: {route}")
 
                 change = input(
@@ -274,7 +274,7 @@ class Manager(MainMenu):
             elif action == "3":
                 line_number = input("Insert the line's number: ").strip()
                 while is_num(line_number) is False or int(
-                        line_number) not in self.bus_company._get_bus_rotes().keys() or len(line_number) == 0:
+                        line_number) not in self.bus_company.get_bus_rotes().keys() or len(line_number) == 0:
                     line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ").strip()
 
                 name = input("Insert Driver's full name: ")
@@ -291,7 +291,7 @@ class Manager(MainMenu):
                         d_time.split(':')[1]) is False or d_time <= o_time:
                     d_time = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the arrival time (in H:M format): ")
 
-                route = self.bus_company._get_route_info(line_number=int(line_number))
+                route = self.bus_company.get_route_info(line_number=int(line_number))
                 scheduled_ride: ScheduledRide = ScheduledRide(driver_name=name, origin_time=o_time,
                                                               destination_time=d_time, )
                 route.add_scheduled_ride(scheduled_ride)
@@ -300,7 +300,7 @@ class Manager(MainMenu):
             else:
                 line_number = input("Insert the line's number: ").strip()
                 while is_num(line_number) is False or int(
-                        line_number) not in self.bus_company._get_bus_rotes().keys() or len(line_number) == 0:
+                        line_number) not in self.bus_company.get_bus_rotes().keys() or len(line_number) == 0:
                     line_number = input("\033[0;31;1mTry Again!\033[0;30;0m Insert the line's number: ").strip()
 
                 interface_check = input("Are you sure? (Yes/No): ")

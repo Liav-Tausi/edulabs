@@ -27,28 +27,28 @@ class BusRoute:
 
         # getters
 
-    def _get_route_number(self) -> int:
+    def get_route_number(self) -> int:
         return self.__route_number
 
-    def _get_origin(self) -> str:
+    def get_origin(self) -> str:
         return self.__origin
 
-    def _get_destination(self) -> str:
+    def get_destination(self) -> str:
         return self.__destination
 
-    def _get_bus_stops(self) -> list[str]:
+    def get_bus_stops(self) -> list[str]:
         return self.__stops
 
-    def _set_origin(self, new_origin: str) -> None:
+    def set_origin(self, new_origin: str) -> None:
         self.__origin = new_origin
 
-    def _set_destination(self, new_destination: str) -> None:
+    def set_destination(self, new_destination: str) -> None:
         self.__destination = new_destination
 
-    def _set_bus_stops(self, new_stops: list[str]) -> None:
+    def set_bus_stops(self, new_stops: list[str]) -> None:
         self.__stops = new_stops
 
-    def _get_scheduled_rides(self) -> list['ScheduledRide']:
+    def get_scheduled_rides(self) -> list['ScheduledRide']:
         return self.__scheduled_rides
 
     def add_scheduled_ride(self, scheduled_ride: 'ScheduledRide') -> None:
@@ -71,13 +71,13 @@ class ScheduledRide:
                f"| Drive time: {difference}"
 
     # getters
-    def _get_id(self) -> int:
+    def get_id(self) -> int:
         return self.__id
 
-    def _get_origin_time(self) -> datetime:
+    def get_origin_time(self) -> datetime:
         return self.__origin_time
 
-    def _get_destination_time(self) -> datetime:
+    def get_destination_time(self) -> datetime:
         return self.__destination_time
 
     # usable functions
@@ -102,28 +102,28 @@ class BestBusCompany:
     def __str__(self):
         return f"{self.__bus_routes}"
 
-    def _get_bus_rotes(self) -> dict[int, BusRoute]:
+    def get_bus_rotes(self) -> dict[int, BusRoute]:
         return self.__bus_routes
 
-    def _get_name(self):
+    def get_name(self):
         return self.__name
 
     def update(self, line_number: int, new_origin: str = None, new_destination: str = None, new_stops: list[str] = None,
                update_origin: bool = False, update_destination: bool = False, update_stops: bool = False):
         if line_number in self.__bus_routes:
             if update_origin:
-                self.__bus_routes[line_number]._set_origin(new_origin)
+                self.__bus_routes[line_number].set_origin(new_origin)
             if update_destination:
-                self.__bus_routes[line_number]._set_destination(new_destination)
+                self.__bus_routes[line_number].set_destination(new_destination)
             if update_stops:
-                self.__bus_routes[line_number]._set_bus_stops(new_stops)
+                self.__bus_routes[line_number].set_bus_stops(new_stops)
         else:
             raise ValueError("Line number not found.")
 
     def add_route(self, bus_route: BusRoute) -> None:
-        if bus_route._get_route_number() in self.__bus_routes:
+        if bus_route.get_route_number() in self.__bus_routes:
             raise ValueError("Route number already exists.")
-        self.__bus_routes[bus_route._get_route_number()] = bus_route
+        self.__bus_routes[bus_route.get_route_number()] = bus_route
 
     def delete_route(self, line_number: int):
         if line_number in self.__bus_routes:
@@ -131,7 +131,7 @@ class BestBusCompany:
         else:
             raise Exception("Route not in system.")
 
-    def _get_route_info(self, line_number: int = None, origin: str = None, destination: str = None,
+    def get_route_info(self, line_number: int = None, origin: str = None, destination: str = None,
                         bus_stop: str = None):
         if line_number:
             # Search by line number
@@ -144,21 +144,21 @@ class BestBusCompany:
             # Search by origin
             matching_routes = []
             for route in self.__bus_routes.values():
-                if route._get_origin() == origin:
+                if route.get_origin() == origin:
                     matching_routes.append(route)
             return matching_routes
         elif destination:
             # Search by destination
             matching_routes = []
             for route in self.__bus_routes.values():
-                if route._get_destination() == destination:
+                if route.get_destination() == destination:
                     matching_routes.append(route)
             return matching_routes
         elif bus_stop:
             # Search by bus stops
             matching_routes = []
             for route in self.__bus_routes.values():
-                if bus_stop in route._get_bus_stops():
+                if bus_stop in route.get_bus_stops():
                     matching_routes.append(route)
             return matching_routes
         else:
