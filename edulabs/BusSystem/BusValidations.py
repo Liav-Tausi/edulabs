@@ -7,8 +7,8 @@ def is_pass(password: str) -> bool:
 
 
 def is_email(email: str) -> bool:
-    pat: str = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
-    while not re.match(pat, email):
+    path: str = "^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$"
+    while not re.match(path, email):
         return False
 
 

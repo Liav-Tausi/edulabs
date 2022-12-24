@@ -59,3 +59,13 @@ import time
 # if __name__ == "__main__":
 #     print(long_running_func(3, 2))
 
+def two_sum(nums, target):
+    indices = {}
+    for i, num in enumerate(nums):
+        if target - num in indices:
+            return [indices[target - num], i]
+        indices[num] = i
+    return []
+
+
+print(two_sum([4,2,3,5], 8))
