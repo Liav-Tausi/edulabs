@@ -297,6 +297,7 @@ class Manager(MainMenu):
                 route.add_scheduled_ride(scheduled_ride)
                 print("\033[0;32;1mScheduled ride has been added!\033[0;30;0m")
 
+
             else:
                 line_number = input("Insert the line's number: ").strip()
                 while is_num(line_number) is False or int(
