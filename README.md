@@ -1,1 +1,2 @@
-# edulabs is the college went to, were ן got my programming education.
+# edulabs
+were i got my programing education
