@@ -1,5 +1,5 @@
-from Rent_Sale import ApartmentForRent, ApartmentForSale
-from Apartment import Apartment
+from rent_sale import ApartmentForRent, ApartmentForSale
+from apartment import Apartment
 
 
 class RealEstateAgency:

@@ -1,4 +1,4 @@
-from Apartment import Apartment
+from apartment import Apartment
 
 
 class ApartmentForRent:

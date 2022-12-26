@@ -1,6 +1,6 @@
-from RealEstateAgency import RealEstateAgency
-from Rent_Sale import ApartmentForRent, ApartmentForSale
-from Apartment import Apartment
+from real_estate_agency import RealEstateAgency
+from rent_sale import ApartmentForRent, ApartmentForSale
+from apartment import Apartment
 
 
 

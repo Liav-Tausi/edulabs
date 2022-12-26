@@ -1,12 +1,13 @@
 from datetime import date, datetime
 
-class RavKav:
 
+class RavKav:
     __rides = {'short': {'range': (0, 15), 'price': 5.5},
                'medium': {'range': (16, 40), 'price': 12},
                'long': {'range': (40, 1000), 'price': 40},
                }
-    def __init__(self,holder_id: int, holder_name: str):
+
+    def __init__(self, holder_id: int, holder_name: str):
         self.holder_name = holder_name
         self.__riders_log: dict[int, dict] = dict()
         self.__holder_id: int = holder_id
@@ -15,7 +16,6 @@ class RavKav:
         self.__rides_types: list[str] = []
         self.__rides_date: list[date] = []
 
-
     def add_balance(self, amount: int) -> bool:
         if amount > 0:
             self.__balance += amount
@@ -23,9 +23,7 @@ class RavKav:
         else:
             return False
 
-
-
-    def ride_range(self, range_of_ride: float, date_of_ride: str,) -> bool | str:
+    def ride_range(self, range_of_ride: float, date_of_ride: str, ) -> bool | str:
         date_log = datetime.strptime(date_of_ride, "%d-%m-%Y")
         if range_of_ride > 0 or self.__balance > 0:
             for key, value in RavKav.__rides.items():
@@ -41,7 +39,6 @@ class RavKav:
         else:
             return False
 
-
     def get_current_balance(self) -> int:
         return self.__balance
 
@@ -55,10 +52,7 @@ class RavKav:
             return self.__rides_types.count(ride_type)
 
 
-
-
 if __name__ == "__main__":
-
     rav_kav = RavKav(1213, "LIAV")
     rav_kav.add_balance(50)
 
@@ -67,5 +61,3 @@ if __name__ == "__main__":
     print(rav_kav._RavKav__rides_date)
     print(rav_kav.get_rides_by_date("12-05-2002"))
     print(rav_kav.get_rides_by_type("medium"))
-
-
