@@ -43,13 +43,13 @@ class CsvThread:
             return sorted(years_set)
 
 
-    def write_yearly_file(self, year, data):
+    def write_yearly_file(self, year, year_data):
         with open(f'e5_files_endpoint/AAPL_{year}.csv', 'w', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=data[0].keys(), delimiter=self.__delimiter)
+            writer = csv.DictWriter(f, fieldnames=year_data[0].keys(), delimiter=self.__delimiter)
             writer.writeheader()
-            for line in data:
+            for line in year_data:
                 writer.writerow(line)
-            averages = self.calculate_averages(data)
+            averages = self.calculate_averages(year_data)
             writer.writerow(averages)
 
 
