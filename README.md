@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://media3.giphy.com/media/SpopD7IQN2gK3qN4jS/giphy.gif" width="350"/>
+  <img src="[https://media3.giphy.com/media/SpopD7IQN2gK3qN4jS/giphy.gif](https://media2.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif?cid=790b7611b48d19d4ad68ee7b632e0dcb539655ccddc86cbe&rid=giphy.gif&ct=g)" width="350"/>
   <h1>Daniel Demidovski</h1>
   <h3>Full stack student</h3>
 </div>
