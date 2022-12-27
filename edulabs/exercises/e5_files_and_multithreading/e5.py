@@ -23,7 +23,9 @@ class CsvThread:
     @staticmethod
     def calculate_averages(data):
         averages = {}
-        for key in data[0].keys()[1:]:
+        for key in data[0].keys():
+            if key == 'Date':
+                continue
             sum_of = 0
             count = 0
             for line in data:
@@ -49,24 +51,28 @@ class CsvThread:
             writer.writeheader()
             for line in year_data:
                 writer.writerow(line)
-            averages = self.calculate_averages(year_data)
-            writer.writerow(averages)
+            writer.writerow(self.calculate_averages(year_data))
 
 
     def create_yearly_files(self):
-        with open(self.__path, 'r') as f:
-            for year in self.get_years():
-                f.seek(0)
-                reader = csv.DictReader(f, delimiter=self.__delimiter)
-                year_data = []
-                for line in reader:
-                    date = datetime.strptime(line['Date'], "%d-%m-%Y").year
-                    if date == year:
-                        year_data.append(line)
-                self.__futures.append(self.__workers.submit(self.write_yearly_file, year, year_data))
-        done, not_done = wait(self.__futures, return_when=concurrent.futures.ALL_COMPLETED)
-        print(f"done: {len(done)}")
-        print(f"not done: {len(not_done)}")
+        if os.path.exists('e5_files_endpoint'):
+            raise DirectoryAndFilesExist('Dir and files Already exists. delete "e5_files_endpoint" directory')
+        else:
+            if not os.path.exists('e5_files_endpoint'):
+                os.makedirs('e5_files_endpoint')
+            with open(self.__path, 'r') as f:
+                for year in self.get_years():
+                    f.seek(0)
+                    reader = csv.DictReader(f, delimiter=self.__delimiter)
+                    year_data = []
+                    for line in reader:
+                        date = datetime.strptime(line['Date'], "%d-%m-%Y").year
+                        if date == year:
+                            year_data.append(line)
+                    self.__futures.append(self.__workers.submit(self.write_yearly_file, year, year_data))
+            done, not_done = wait(self.__futures, return_when=concurrent.futures.ALL_COMPLETED)
+            print(f"done: {len(done)}")
+            print(f"not done: {len(not_done)}")
 
 
 if __name__ == '__main__':
@@ -80,9 +86,9 @@ if __name__ == '__main__':
     except UnExceptableFile:
         print('file not csv')
 
+    except DirectoryAndFilesExist:
+        print("dir and files already exists")
+        quit()
+
     except Exception:
         print("Error")
-
-
-
-
