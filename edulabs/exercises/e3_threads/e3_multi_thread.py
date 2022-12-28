@@ -64,6 +64,8 @@ NAMES = ["Kenyon", "Deshawn", "Michaela", "Molly", "Barrett", "Steven", "Brisa",
 # and make sure you don't get blocked by the servers you are sending requests to because of too many simultaneous requests from the same ip
 
 def get_etnithity_two(*args):
+    if not os.path.exists('e3_files'):
+        os.makedirs('e3_files')
     executor = ThreadPoolExecutor(max_workers=16)
     futures = []
     for name in args[0]:
@@ -86,13 +88,8 @@ def get_nationality_for_name(name):
     if eth.status_code > 400 or cou.status_code > 400:
         raise Exception("over 400")
     else:
-        if not os.path.exists(f"e3_files/files_{name}.txt"):
-            os.makedirs('e3_files')
-            with open(f"e3_files/files_{name}.txt", 'w') as fh:
-                fh.write(f"{name}'s nationality is most probably from {country_name} ")
-        else:
-            with open(f"e3_files/files_{name}.txt", 'a') as fh:
-                fh.write(f"{name}'s nationality is most probably from {country_name} ")
+        with open(f"e3_files/files_{name}.txt", 'w') as fh:
+            fh.write(f"{name}'s nationality is most probably from {country_name} ")
 
 
 if __name__ == "__main__":
