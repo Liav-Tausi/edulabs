@@ -77,7 +77,7 @@ class CsvThread:
 
 if __name__ == '__main__':
     try:
-        csv_thread: CsvThread = CsvThread(path='e5_files/apple_stock.csv', delimiter=',')
+        csv_thread: CsvThread = CsvThread(path='e5_files/apple_stock.csv', delimiter=',', workers=8)
         start = time.perf_counter()
         csv_thread.create_yearly_files()
         end = time.perf_counter()
