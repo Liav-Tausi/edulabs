@@ -1,1 +1,1 @@
-# Full Stack student
+# Full Stack Course
