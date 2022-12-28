@@ -21,7 +21,7 @@ class CsvThread:
 
 
     @staticmethod
-    def calculate_averages(data) -> 'dict[any, float]':
+    def calculate_averages(data) -> dict[any, float]:
         averages: dict = dict()
         for key in data[0].keys():
             if key == 'Date':
@@ -35,7 +35,7 @@ class CsvThread:
         return averages
 
 
-    def get_years(self) -> 'list[int]':
+    def get_years(self) -> list[int]:
         with open(self.__path, 'r') as f:
             years_set: set = set()
             reader = csv.DictReader(f, delimiter=self.__delimiter)
@@ -45,7 +45,7 @@ class CsvThread:
             return sorted(years_set)
 
 
-    def write_yearly_file(self, year, year_data) -> 'None':
+    def write_yearly_file(self, year, year_data) -> None:
         with open(f'e5_files_endpoint/AAPL_{year}.csv', 'w', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=year_data[0].keys(), delimiter=self.__delimiter)
             writer.writeheader()
@@ -54,7 +54,7 @@ class CsvThread:
             writer.writerow(self.calculate_averages(year_data))
 
 
-    def create_yearly_files(self) -> 'None':
+    def create_yearly_files(self) -> None:
         if os.path.exists('e5_files_endpoint'):
             raise DirectoryAndFilesExist('Dir and files Already exists. delete "e5_files_endpoint" directory')
         else:
