@@ -61,9 +61,8 @@ class CsvThread:
             if not os.path.exists('e5_files_endpoint'):
                 os.makedirs('e5_files_endpoint')
             with open(self.__path, 'r') as fh:
+                reader = csv.DictReader(fh, delimiter=self.__delimiter)
                 for year in self.get_years():
-                    fh.seek(0)
-                    reader = csv.DictReader(fh, delimiter=self.__delimiter)
                     year_data: list = list()
                     for line in reader:
                         date = datetime.strptime(line['Date'], "%d-%m-%Y").year
