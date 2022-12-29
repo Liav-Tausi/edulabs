@@ -56,7 +56,10 @@ class BusRoute:
 
 
 class ScheduledRide:
+    """
+    this class defines the scheduled ride object that contains the information about a scheduled ride
 
+    """
     def __init__(self, origin_time: str, destination_time: str, driver_name: str):
         self.__id = random.randint(1, 10000)
         self.__origin_time: datetime = datetime.strptime(origin_time, "%H:%M")
@@ -92,6 +95,10 @@ class ScheduledRide:
 
 
 class BestBusCompany:
+    """
+    this class defines the bus company object that contains the information about the bus routes
+
+    """
 
     def __init__(self, name: str):
         # bus_routes storage
