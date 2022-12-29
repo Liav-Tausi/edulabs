@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 import random
 
 
-
 class BusRoute:
     """
     this class defines the bus route object that contains the information about a bus route
@@ -60,6 +59,7 @@ class ScheduledRide:
     this class defines the scheduled ride object that contains the information about a scheduled ride
 
     """
+
     def __init__(self, origin_time: str, destination_time: str, driver_name: str):
         self.__id = random.randint(1, 10000)
         self.__origin_time: datetime = datetime.strptime(origin_time, "%H:%M")
@@ -120,9 +120,9 @@ class BestBusCompany:
         if line_number in self.__bus_routes:
             if update_origin:
                 self.__bus_routes[line_number].set_origin(new_origin)
-            if update_destination:
+            elif update_destination:
                 self.__bus_routes[line_number].set_destination(new_destination)
-            if update_stops:
+            elif update_stops:
                 self.__bus_routes[line_number].set_bus_stops(new_stops)
         else:
             raise ValueError("Line number not found.")
@@ -139,7 +139,7 @@ class BestBusCompany:
             raise Exception("Route not in system.")
 
     def get_route_info(self, line_number: int = None, origin: str = None, destination: str = None,
-                        bus_stop: str = None):
+                       bus_stop: str = None):
         if line_number:
             # Search by line number
             if int(line_number) not in self.__bus_routes.keys():
