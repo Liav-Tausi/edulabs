@@ -115,21 +115,42 @@ SELECT COUNT(date_part('YEAR', NOW()) - year_birth)
 FROM superstore_data
 WHERE response >= 1 AND complain = 0; 
 
+
+
 --25 
-SELECT education, MIN(date_part('YEAR', NOW()) - year_birth) AS min_year
-FROM superstore_data
-GROUP BY education
-ORDER BY min_year;
+SELECT
+	education,
+	MIN(date_part('YEAR', NOW()) - year_birth) AS min_year
+FROM
+	superstore_data
+GROUP BY
+	education
+ORDER BY
+	min_year;
+
+--25
+SELECT 
+	  DISTINCT ON (education)
+	  education, 
+	  MIN(date_part('YEAR', NOW()) - year_birth) AS min_year,
+	  id
+FROM superstore_data 
+ORDER BY education, min_year;
+
 
 --26
-SELECT kidhome + teenhome, 
-	   ROUND(AVG(mntfishproducts),2) AS avg_fish,
-	   ROUND(AVG(mntmeatproducts),2) AS avg_meat,
-	   ROUND(AVG(mntsweetproducts),2) AS avg_sweet,
-	   ROUND(AVG(mntgoldprods),2) AS avg_gold,
-	   ROUND(AVG(mntwines),2) AS avg_wine
-FROM superstore_data
-GROUP BY kidhome + teenhome;
+SELECT
+	kidhome + teenhome, 
+	   ROUND(AVG(mntfishproducts), 2) AS avg_fish,
+	   ROUND(AVG(mntmeatproducts), 2) AS avg_meat,
+	   ROUND(AVG(mntsweetproducts), 2) AS avg_sweet, 
+	   ROUND(AVG(mntgoldprods), 2) AS avg_gold,
+	   ROUND(AVG(mntwines), 2) AS avg_wine
+FROM
+	superstore_data
+GROUP BY
+	kidhome + teenhome;
+
 
 --27 
 SELECT teenhome ,
@@ -139,10 +160,12 @@ FROM superstore_data
 GROUP BY teenhome, year_birth 
 ORDER BY min_year;
 
+
 --28
 SELECT COUNT(*)
 FROM superstore_data
 WHERE response >= 0;
+
 
 --29
 SELECT marital_status,
