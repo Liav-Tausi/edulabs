@@ -27,7 +27,7 @@ class CsvThread:
             if key == 'Date':
                 continue
             sum_of: int = 0
-            count: int  = 0
+            count: int = 0
             for line in data:
                 sum_of += float(line[key])
                 count += 1
