@@ -1,52 +1,43 @@
-
-CREATE TABLE accounts(
-	id SERIAL PRIMARY KEY,
-	account_num BIGINT UNIQUE NOT NULL,
-	max_limit BIGINT NOT NULL,
-	balance NUMERIC NOT NULL,
-	allowd_usd BOOL NOT NULL
+create table customers(
+	id serial primary key,
+	passport_num bigint unique not null,
+	name varchar(128) not null,
+	address varchar(256)
 );
 
-
-
-CREATE TABLE customers(
-	id SERIAL PRIMARY KEY,
-	passport_num BIGINT NOT NULL,
-	customer_name VARCHAR(64) NOT NULL,
-	address VARCHAR(128) NOT NULL
+create table accounts(
+	id serial primary key,
+	balance float not null default 0,
+	max_limit float not null default 0
 );
 
-
-
-CREATE TABLE customers_accounts(
-	id SERIAL PRIMARY KEY,
-	account_id INT NOT NULL,
-	customer_id INT NOT NULL,
-	FOREIGN KEY (customer_id) REFERENCES customers(id),
-	FOREIGN KEY (account_id) REFERENCES accounts(id)
+create table account_owners(
+	id serial primary key,
+	customer_id int not null,
+	account_id int not null,
+	foreign key (customer_id) references customers(id),
+	foreign key (account_id) references accounts(id)
 );
 
-
-
-CREATE TABLE transactions(
-	id SERIAL PRIMARY KEY,
-	t_type VARCHAR(64) CHECK (t_type IN ('withdraw','deposit','transfer')),
-	amount BIGINT NOT NULL,
-	t_timestamp TIMESTAMP NOT NULL,
-	t_action_placer INT NOT NULL,
-	sender INT,
-	resiver INT,
-	FOREIGN KEY (t_action_placer) REFERENCES customers(id),
-	FOREIGN KEY (sender) REFERENCES accounts(id),
-	FOREIGN KEY (resiver) REFERENCES accounts(id)
+create table transactions(
+	id serial primary key,
+	transaction_type varchar(16) not null,
+	ts timestamp not null,
+	initiated_by int not null,
+	foreign key (initiated_by) references customers(passport_num) on delete cascade
 );
 
-
-
-
-
-
-
+create table transaction_accounts(
+	id serial primary key,
+	-- states the role of the account in transaction
+	-- for example, when transfering (sender / receiver)
+	-- for withdraw/deposit, can be null
+	account_role varchar(16),
+	transaction_id int not null,
+	account_id int not null,
+	foreign key (transaction_id) references transactions(id) on delete cascade,
+	foreign key (account_id) references accounts(id) on delete cascade
+);
 
 
 
