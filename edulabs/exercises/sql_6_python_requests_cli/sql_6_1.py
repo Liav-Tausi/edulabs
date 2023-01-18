@@ -33,6 +33,7 @@ class Imdb:
             try:
                 return func(*args, **kwargs)
             finally:
+                args[0].conn.commit()
                 args[0].conn.close()
         return wrapper
 
