@@ -52,7 +52,6 @@ class Bank(DbConnection):
             try:
                 return func(*args, **kwargs)
             finally:
-                args[0].conn.commit()
                 args[0].conn.close()
 
         return wrapper
@@ -115,18 +114,19 @@ class Bank(DbConnection):
 
     @close_connection_and_commit
     def transfer(self, to_account: int, amount, initiated_by: str):
-        with self.conn.cursor() as cur:
-            if amount <= self.balance:
-                self._subtract_balance(amount)
-                self._add_balance(amount, to_account)
-                _query = """
-                           SELECT passport_num FROM customers
-                           WHERE name = %s
-                                           """
-                cur.execute(_query, (initiated_by,))
-                passport_num = cur.fetchone()
-                self._transfer_record(passport_num[0])
-                return True
+        with self.conn:
+            with self.conn.cursor() as cur:
+                if amount <= self.balance:
+                    self._subtract_balance(amount)
+                    self._add_balance(amount, to_account)
+                    _query = """
+                               SELECT passport_num FROM customers
+                               WHERE name = %s
+                                               """
+                    cur.execute(_query, (initiated_by,))
+                    passport_num = cur.fetchone()
+                    self._transfer_record(passport_num[0])
+                    return True
 
 
 if __name__ == '__main__':

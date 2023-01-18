@@ -33,7 +33,6 @@ class Imdb:
             try:
                 return func(*args, **kwargs)
             finally:
-                args[0].conn.commit()
                 args[0].conn.close()
         return wrapper
 
@@ -41,30 +40,32 @@ class Imdb:
     @close_connection
     def search_movie(self, movie_name: str) -> tuple | None:
         if isinstance(movie_name, str):
-            with self.conn.cursor() as cur:
-                query1 = 'SELECT rating FROM movies WHERE movie_name = %s'
-                cur.execute(query1, (movie_name,))
-                movie_query = cur.fetchone()
-                if movie_query:
-                    query2 = f"SELECT release_date, rating FROM movies WHERE movie_name = %s"
-                    cur.execute(query2, (movie_name,))
-                    info = cur.fetchone()
-                    return info
-                else:
-                    return None
+            with self.conn:
+                with self.conn.cursor() as cur:
+                    query1 = 'SELECT rating FROM movies WHERE movie_name = %s'
+                    cur.execute(query1, (movie_name,))
+                    movie_query = cur.fetchone()
+                    if movie_query:
+                        query2 = f"SELECT release_date, rating FROM movies WHERE movie_name = %s"
+                        cur.execute(query2, (movie_name,))
+                        info = cur.fetchone()
+                        return info
+                    else:
+                        return None
 
 
     @close_connection
     def display_movies_by_rating(self, movie_name: str):
         if isinstance(movie_name, str):
-            with self.conn.cursor() as cur:
-                query1 = 'SELECT rating FROM movies WHERE movie_name = %s'
-                cur.execute(query1, (movie_name,))
-                movie_query: int = cur.fetchone()[0]
-                query2 = 'SELECT movie_name FROM movies WHERE rating < %s'
-                cur.execute(query2, (movie_query,))
-                info = cur.fetchall()
-                return info
+            with self.conn:
+                with self.conn.cursor() as cur:
+                    query1 = 'SELECT rating FROM movies WHERE movie_name = %s'
+                    cur.execute(query1, (movie_name,))
+                    movie_query: int = cur.fetchone()[0]
+                    query2 = 'SELECT movie_name FROM movies WHERE rating < %s'
+                    cur.execute(query2, (movie_query,))
+                    info = cur.fetchall()
+                    return info
 
 
 def main():
