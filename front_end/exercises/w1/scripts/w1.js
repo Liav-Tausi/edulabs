@@ -17,6 +17,8 @@ let imgDisplay = true;
 myB.addEventListener('click', showDate);
 showImgButton.addEventListener('click', showImg);
 
+
+
 function showDate() {
 
   if (!dateDisplay) {
