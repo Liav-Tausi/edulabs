@@ -29,7 +29,7 @@ function showDate() {
     myP.innerHTML = '';
     myB.innerHTML = 'Show Date';
     dateDisplay = false;
-  }
+  }0
 }
 
 function showImg() {
