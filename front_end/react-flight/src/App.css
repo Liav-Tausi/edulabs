@@ -1,0 +1,34 @@
+.outline {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: black;
+  margin: 150px;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+
+.seat {
+  width: 50px;
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.red {
+  color: red;
+}
