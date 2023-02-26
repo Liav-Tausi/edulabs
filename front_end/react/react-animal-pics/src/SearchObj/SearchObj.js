@@ -59,6 +59,12 @@ const SearchObj = () => {
             <img className="prev" src="https://cdn-icons-png.flaticon.com/512/3916/3916837.png" alt="privios" />
           </button>
 
+          <div className="container2">
+            <div className='counter'>
+              {currImgIndex + 1 }/{currImgUrl.length}
+            </div>
+          </div>
+
           <button onClick={handleNextImg} disabled={currImgIndex === currImgUrl.length - 1}>
             <img className="next" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Feather-arrows-arrow-right.svg/1200px-Feather-arrows-arrow-right.svg.png" alt="next" />
           </button>
