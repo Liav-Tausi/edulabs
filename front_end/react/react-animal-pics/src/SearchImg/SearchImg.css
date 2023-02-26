@@ -1,0 +1,11 @@
+.imgs {
+  width: 450px;
+  height: 350px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.container2 {
+  display: flex;
+  justify-content: center;
+}
